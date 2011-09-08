@@ -5,7 +5,21 @@ import akka.actor.{ActorRef, Actor}
 object Kicker extends App {
 
   val charger: ActorRef = Actor.actorOf[SimpleCharger].start
-  charger ! "1"
+
+  println( "Registered Chargers: " + Actor.registry.actors + "\n\n" )
+
+  println("Charger>> plug in")
+  charger !! Plugin
+
+  println("Charger>> charge")
+  charger !! Charge
+
+  println("Charger>> plug out")
+  charger !! Plugout
+
+  println("Charger>> switch off")
+  charger !! Deenergize
 
   Thread.sleep(10)
+  Actor.registry.shutdownAll()
 }

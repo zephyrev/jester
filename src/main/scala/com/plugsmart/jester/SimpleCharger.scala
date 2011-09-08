@@ -8,6 +8,7 @@ import akka.util.duration._
 case object Plugin
 case object Plugout
 case object Charge
+case object Deenergize
 
 sealed trait ChargerState
 case object Idle extends ChargerState
@@ -24,6 +25,9 @@ class SimpleCharger extends Actor with FSM[ChargerState, Unit] {
     case Ev(Plugin) =>
       EventHandler.info(this, "Go to Plugged")
       goto( Charging )
+    case Ev( Deenergize ) =>
+      EventHandler.info(this, "Go to Plugged")
+      stop
   }
 
   when( Plugged ) {
@@ -39,4 +43,5 @@ class SimpleCharger extends Actor with FSM[ChargerState, Unit] {
   }
 
   initialize // this checks validity of the initial state and sets up timeout if needed
+  println("Simple Charger Initialized")
 }
