@@ -11,6 +11,8 @@ object KickCharger extends App {
   println("Charger>> plug in")
   charger !! Plugin
 
+  Thread.sleep( 10 )
+
   println("Charger>> charge")
   charger !! Charge
 
