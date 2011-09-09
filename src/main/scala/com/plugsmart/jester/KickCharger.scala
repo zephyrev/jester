@@ -1,22 +1,8 @@
 package com.plugsmart.jester
 
-/**
- * Created by IntelliJ IDEA.
- * User: johan
- * Date: 9/9/11
- * Time: 7:07 AM
- * To change this template use File | Settings | File Templates.
- */
+import akka.actor.{Actor, ActorRef}
 
-class KickCharger {
-
-}
-
-package com.plugsmart.jester
-
-import akka.actor.{ActorRef, Actor}
-
-object Kicker extends App {
+object KickCharger extends App {
 
   val charger: ActorRef = Actor.actorOf[SimpleCharger].start
 
